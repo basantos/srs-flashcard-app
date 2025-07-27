@@ -67,7 +67,7 @@ def add_card_page():
         back = input("Enter info for back of card: ")
         set = input("Enter name of a set to add card or leave blank: ")
         if set == '':
-            set = 'Uncategorized'
+            set = 'uncategorized'
         # organize set do later
         hint = input("Enter hint: ")
         validate_add_card(front, back, set, hint)
@@ -138,7 +138,7 @@ def view_card(set, row_num):
             view_card(set, row_num)
         elif key == 'd':
             delete_card(set, int(row_num)-1)
-            show_set(set, int(row_num)-1, int(row_num)+3)
+            show_set(set)
         elif key == 'h':
             show_help_page()
             view_card(set, row_num)
