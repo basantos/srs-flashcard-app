@@ -1,0 +1,2 @@
+front of card,level,score,new_level,review_date
+hola!,1,2,2,2025-08-10 18:20:35.947053

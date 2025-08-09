@@ -1,4 +1,6 @@
 import csv
+import reviewer as r  # contains functions for review page
+import datetime
 
 # functions for home page
 def print_list(arr):
@@ -25,7 +27,7 @@ def show_home_page():
             show_home_page()
         elif key == 'aa':
             try:
-                file = input("Enter path of your csv file (example: C:\\\\Users\Bri\Documents\Files\File.csv)")
+                file = input("Enter path of your csv file (example: C:\\\\Users\\Bri\\Documents\\Files\\File.csv)")
             except KeyboardInterrupt:
                 any_key_to_return("Add cards canceled. Press any key to return to home page.")
 
@@ -104,7 +106,7 @@ def create_card(front, back, set, hint):
     filename = set.lower() + '.csv'
     with open(filename, 'a', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow([front, back, set, hint])
+        writer.writerow([front, back, set, hint, 0, datetime.now()])
 
 def create_cards_from_csv(csv_file):
     """Creates multiple cards from a csv file"""
@@ -239,7 +241,7 @@ def show_set(set, start=0, end=4):
                 break
             csv_row += 1
     print("---------------------\nPlease enter:\n# to select and view card\n‘n’ to view next 5 cards\n‘p’ to view previous 5 cards"
-          "\n‘a’ to add a new card\n'h' to show help page\n‘s’ or 'ss' to return to home/set lists page\n---------------------\n")
+          "\n‘a’ to add a new card\n'r' to start review\n'h' to show help page\n‘s’ or 'ss' to return to home/set lists page\n---------------------\n")
     while True:
         key = input("What would you like to do?")
         if key.isnumeric():
@@ -261,6 +263,9 @@ def show_set(set, start=0, end=4):
             return
         elif key == 'a':
             add_card_page()
+            show_set(set, start, end)
+        elif key == 'r':
+            r.start_review(set)
             show_set(set, start, end)
         elif key == 'h':
             show_help_page()
