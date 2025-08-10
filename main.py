@@ -106,7 +106,7 @@ def create_card(front, back, set, hint):
     filename = set.lower() + '.csv'
     with open(filename, 'a', newline='') as f:
         writer = csv.writer(f)
-        writer.writerow([front, back, set, hint, 0, datetime.now()])
+        writer.writerow([front, back, set, hint, 0, datetime.datetime.now()])
 
 def create_cards_from_csv(csv_file):
     """Creates multiple cards from a csv file"""
